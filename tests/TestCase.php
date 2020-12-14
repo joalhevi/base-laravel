@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Laravel\Sanctum\Sanctum;
 use Bouncer;
@@ -14,6 +15,7 @@ abstract class TestCase extends BaseTestCase
         parent::setUp();
 //        $this->signIn();
     }
+    public $baseUrl ="/api/";
 
     public function signIn($ability, $name){
 

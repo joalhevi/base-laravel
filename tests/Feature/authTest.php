@@ -69,7 +69,7 @@ class authTest extends TestCase
         $auth=User::factory()->create(['active'=>false]);
         $data=[
             'email'=>$auth->email,
-            'password'=>'123456',
+            'password'=>'password',
             'device_name'=>'test'
         ];
         $response = $this->postJson('/api/login',$data);

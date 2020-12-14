@@ -41,7 +41,7 @@ class UsersTableSeeder extends Seeder
         ]);
 
         /*
-         * abilidades de usuario
+         * habilidades de usuario
          */
         $indexUsers = Bouncer::ability()->create([
             'name' => 'users-index',

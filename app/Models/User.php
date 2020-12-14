@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -11,7 +12,7 @@ use Silber\Bouncer\Database\HasRolesAndAbilities;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, HasApiTokens, HasRolesAndAbilities;
+    use HasFactory, Notifiable, HasApiTokens, HasRolesAndAbilities, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -34,7 +35,8 @@ class User extends Authenticatable
         'remember_token',
         'created_at',
         'updated_at',
-        'email_verified_at'
+        'email_verified_at',
+        'deleted_at'
     ];
 
     /**
@@ -102,6 +104,23 @@ class User extends Authenticatable
     public function getFullNameAttribute(): string
     {
         return "{$this->name} {$this->lastname}";
+    }
+
+    /**
+     * Buscador
+     *
+     * @param $query
+     * @param $buscar
+     * @return mixed
+     */
+    public function scopeSearch($query, $search)
+    {
+        if (trim($search) != "" and $search != "null") {
+            return $query->where('name', 'LIKE', "%$search%")
+                ->orWhere('lastname', 'LIKE', "%$search%")
+                ->orWhere('email', 'LIKE', "%$search%")
+                ->orWhere('identification', 'LIKE', "%$search%");
+        }
     }
 
 }

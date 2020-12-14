@@ -16,21 +16,37 @@ class AuthController extends Controller
      */
     public function login(loginRequest $request): JsonResponse
     {
-
+        // obtener usuario
         $user = User::where('email', $request->email)->first();
-        if (!$user->active) {
+
+
+        // verificar que existencia del usuario y contraseña si sea correcta
+        if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json([
                 'email' => ['message'=>'Credenciales incorrectos'],
             ],422);
         }
-        if (!$user || !Hash::check($request->password, $user->password)) {
+
+        //verificar que este activo
+        if (!$user->active) {
             return response()->json([
-                'email' => ['message'=>'Credenciales incorrectos'],
-            ]);
+                'email' => ['message'=>'Usuario inactivo'],
+            ],422);
         }
 
+
+        //evitar multiples login
+        foreach ($user->tokens as $token) {
+            $token->delete();
+        }
+
+        //obtener habilidades y añadir habilidades básicas para el front
         $abilities = $user->getAbilities()->pluck('name')->push('404')->push('403')->push('500')->push('home')->push('perfil')->push('reset');
+
+        //crear token
         $token = $user->createToken($request->device_name)->plainTextToken;
+
+        // retornar información
         return response()->json([
             'access_token' => $token,
             'user' => $user,
@@ -44,10 +60,15 @@ class AuthController extends Controller
 
     public function logout(): JsonResponse
     {
+        // obtener usuario
         $user = auth()->user();
+
+        //eliminar todas los token que existan del usuario
         foreach ($user->tokens as $token) {
             $token->delete();
         }
+
+        // retornar información
         return response()->json(['message'=>'user logout'], 200);
     }
 
