@@ -4,15 +4,14 @@
     <list default="true" id="03e759a5-26d0-46da-87bf-4761ada0d5c9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Auth/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Auth/AuthController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PagesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PagesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Users/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Users/UsersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Roles/UpdateRoleRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Roles/UpdateRoleRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Users/UpdateUsersRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Users/UpdateUsersRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Users/UsersResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Users/UsersResource.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_100000_create_password_resets_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_100000_create_password_resets_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeders/UsersTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/UsersTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/authTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/authTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/TestCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/TestCase.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,7 +179,9 @@
       <option name="presentableId" value="Default" />
       <updated>1607785168898</updated>
       <workItem from="1607785171007" duration="14620000" />
-      <workItem from="1607956970965" duration="16008000" />
+      <workItem from="1607956970965" duration="17954000" />
+      <workItem from="1607978512512" duration="6135000" />
+      <workItem from="1608041064528" duration="11429000" />
     </task>
     <servers />
   </component>
@@ -194,6 +195,11 @@
           <url>file://$PROJECT_DIR$/tests/Feature/UsersTest.php</url>
           <line>28</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Support/Facades/Password.php</url>
+          <line>4</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

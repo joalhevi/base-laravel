@@ -28,12 +28,11 @@ class AuthController extends Controller
         }
 
         //verificar que este activo
-        if (!$user->active) {
+        if ($user->active===true) {
             return response()->json([
                 'email' => ['message'=>'Usuario inactivo'],
             ],422);
         }
-
 
         //evitar multiples login
         foreach ($user->tokens as $token) {

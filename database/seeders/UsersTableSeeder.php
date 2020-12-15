@@ -63,6 +63,14 @@ class UsersTableSeeder extends Seeder
             'name' => 'users-delete',
             'title' => 'Elimiar usuarios',
         ]);
+        $changeStatusUsers = Bouncer::ability()->create([
+            'name' => 'users-status',
+            'title' => 'Cambiar estado del usuario',
+        ]);
+        $revomeTokensUsers = Bouncer::ability()->create([
+            'name' => 'users-remove-token',
+            'title' => 'Cerrar sesión de los usuarios',
+        ]);
 
     }
 }

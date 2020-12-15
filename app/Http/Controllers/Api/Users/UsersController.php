@@ -31,7 +31,7 @@ class UsersController extends Controller
      */
     public function index(Request $request): UsersCollection
     {
-        return new UsersCollection(User::with('Roles','abilities')->orderBy('id','desc')->search($request->search)->paginate(8));
+        return new UsersCollection(User::with('Roles','abilities')->orderBy('id','desc')->search($request->q)->paginate(8));
     }
 
     /**
@@ -106,6 +106,47 @@ class UsersController extends Controller
         $user->save();
 
         return response()->json(['data'=>['success']],204);
+
+    }
+
+
+    /**
+     * Change stade active user.
+     *
+     * @param User $user
+     * @return JsonResponse
+     *
+     */
+    public function blockUser(User $user): JsonResponse
+    {
+        //invertir estado
+        $user->active= !$user->active;
+        $user->save();
+
+        //eliminar todos los token del usuario
+        foreach ($user->tokens as $token) {
+            $token->delete();
+        }
+
+        return response()->json(['data'=>['success']],200);
+
+    }
+
+    /**
+     * Remove tokens specified user.
+     *
+     * @param User $user
+     * @return JsonResponse
+     *
+     */
+    public function removeToken(User $user): JsonResponse
+    {
+        //eliminar todos los token del usuario
+        foreach ($user->tokens as $token) {
+            $token->delete();
+        }
+
+        return response()->json(['data'=>['success']],200);
 
     }
 }

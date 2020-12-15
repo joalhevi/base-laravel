@@ -29,6 +29,7 @@ class UpdateUsersRequest extends FormRequest
     public function rules(Request  $request):array
     {
         return [
+            'id'=>'required|exists:users,id|numeric',
             'nombre'=>'required|min:3|max:50|string',
             'apellido'=>'required|min:3|max:20|string',
             'correo'=>['required','email',Rule::unique('users','email')->ignore($request->id)],
