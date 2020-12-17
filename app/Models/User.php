@@ -9,10 +9,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Silber\Bouncer\Database\HasRolesAndAbilities;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, HasApiTokens, HasRolesAndAbilities, SoftDeletes;
+    use HasFactory, Notifiable, HasApiTokens, HasRolesAndAbilities, SoftDeletes,LogsActivity;
 
     /**
      * The attributes that are mass assignable.
@@ -28,6 +29,13 @@ class User extends Authenticatable
         'active',
         'reset_password'
     ];
+
+    /**
+     * The attributes log activity.
+     *
+     * @var array
+     */
+    protected static $logAttributes = ['name', 'lastname', 'identification', 'email', 'active', 'reset_password'];
 
     /**
      * The attributes that should be hidden for arrays.

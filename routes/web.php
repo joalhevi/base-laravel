@@ -14,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', PagesController::class);
+Route::get('/', PagesController::class)->name('start');
 
 Route::get('/{any}', PagesController::class)->where('any', '.*');

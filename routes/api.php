@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Api\Abilities\AbilitiesController;
+use App\Http\Controllers\Api\Activity\ActivityController;
 use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\Auth\PasswordResetController;
+use App\Http\Controllers\Api\Backup\BackupController;
 use App\Http\Controllers\Api\Roles\RolesController;
 use App\Http\Controllers\Api\Users\UsersController;
 use Illuminate\Http\Request;
@@ -33,7 +35,7 @@ Route::middleware('auth:sanctum')->group( function () {
 
     Route::post('/logout',[AuthController::class,'logout'])->name('logout'); // ruta para cerrar sesion
 
-    Route::get('abilities',[AbilitiesController::class,'index']);  // obtener todas las habilidades
+    Route::get('abilities',[AbilitiesController::class,'index'])->name('abilities.index');  // obtener todas las habilidades
 
     Route::apiResource('roles',RolesController::class); // rutas rest de roles
 
@@ -43,4 +45,7 @@ Route::middleware('auth:sanctum')->group( function () {
 
     Route::post('users/remove-token/{user}',[UsersController::class,'removeToken'])->name('users.remove-token'); // rutas rest de usuarios
 
+    Route::get('activity',[ActivityController::class,'index'])->name('activity.index');  // listar log de actividades
+
+    Route::get('backup',[BackupController::class,'index'])->name('backup');  // listar log de actividades
 });

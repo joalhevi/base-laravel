@@ -28,7 +28,7 @@ class AuthController extends Controller
         }
 
         //verificar que este activo
-        if ($user->active===true) {
+        if ($user->active===false) {
             return response()->json([
                 'email' => ['message'=>'Usuario inactivo'],
             ],422);
