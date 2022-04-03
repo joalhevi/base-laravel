@@ -2,15 +2,15 @@
 
 namespace App\Http\Resources\Users;
 
-use App\Http\Resources\Roles\RolesCollection;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UsersResource extends JsonResource
+class UserDataResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @return array
      */
     public function toArray($request): array
@@ -20,13 +20,11 @@ class UsersResource extends JsonResource
             'nombre' => $this->name,
             'apellido' => $this->lastname,
             'nombre_completo' => $this->fullName,
-            'identificacion'=>$this->identification,
-            'correo'=>$this->email,
-            'estado'=>$this->active,
-            'reinicio_password'=>$this->reset_password,
-            'relaciones'=>[
-                'roles'=>new RolesCollection($this->Roles)
-            ]
+            'identificacion' => $this->identification,
+            'correo' => $this->email,
+            'estado' => $this->active,
+            'rol' => $this->roles[0]['name'],
+            'reset_password' =>$this->reset_password
         ];
-    }
+     }
 }

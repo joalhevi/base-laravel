@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\loginRequest;
+use App\Http\Resources\Users\UserDataResource;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
@@ -17,7 +18,7 @@ class AuthController extends Controller
     public function login(loginRequest $request): JsonResponse
     {
         // obtener usuario
-        $user = User::where('email', $request->email)->first();
+        $user = User::with('roles')->where('identification', $request->identificacion)->first();
 
 
         // verificar que existencia del usuario y contraseña si sea correcta
@@ -48,7 +49,7 @@ class AuthController extends Controller
         // retornar información
         return response()->json([
             'access_token' => $token,
-            'user' => $user,
+            'user' => new UserDataResource($user),
             'abilities' => $abilities,
         ]);
     }
